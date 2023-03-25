@@ -38,6 +38,7 @@ h4 {
 
 .container {
   margin: 30px auto;
+  padding: 0 20px;
   width: 350px;
 }
 .container .inc-exp-container {
@@ -123,8 +124,12 @@ h4 {
   margin: 10px 0 30px;
   padding: 10px;
   width: 100%;
+  transition: 0.2s;
 }
 .container #form .btn:focus,
 .container #form .btn .delete-btn:focus {
   outline: 0;
+}
+.container #form .btn:hover {
+  background-color: #8372dc;
 }/*# sourceMappingURL=style.css.map */

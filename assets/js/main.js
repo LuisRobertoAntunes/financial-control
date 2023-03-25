@@ -14,8 +14,38 @@ let transactions =
 
 const removeTransaction = (ID) => {
   transactions = transactions.filter((transaction) => transaction.id !== ID)
-  updateLocalStorage()
-  init()
+
+  Swal.fire({
+    title: "Deseja Continuar?",
+    text: "Você não será capaz de reverter isso!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#2e75cc",
+    cancelButtonColor: "#e74c3c",
+    confirmButtonText: "Sim",
+    cancelButtonText: "Cancelar",
+    allowOutsideClick: false,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deletada!",
+        text: "Transação Deletada.",
+        icon: "success",
+        confirmButtonText: "OK",
+        allowOutsideClick: false,
+      })
+      updateLocalStorage()
+      init()
+    } else {
+      Swal.fire({
+        title: "Operação Cancelada!",
+        icon: "error",
+        confirmButtonText: "OK",
+        allowOutsideClick: false,
+      })
+      
+    }
+  })
 }
 
 const addTransactionIntoDom = ({ amount, name, id }) => {
@@ -98,9 +128,31 @@ const handleFormSubmit = (event) => {
   const isSomeInputEmpty = transactionName === "" || transactionAmount === ""
 
   if (isSomeInputEmpty) {
-    alert("Por favor, preencha tanto o nome quanto o valor da transação")
+    Swal.fire({
+      title: "Error!",
+      text: "Por favor, preencha tanto o nome quanto o valor da transação.",
+      icon: "error",
+      confirmButtonText: "OK",
+      allowOutsideClick: false,
+    })
     return
   }
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer)
+      toast.addEventListener("mouseleave", Swal.resumeTimer)
+    },
+  })
+  Toast.fire({
+    icon: "success",
+    title: "Trasação cadastrada com Sucesso!",
+  })
 
   addToTransactionsArray(transactionName, transactionAmount)
   init()
