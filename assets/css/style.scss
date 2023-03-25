@@ -1,0 +1,134 @@
+@import "variables";
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $background-color;
+  color: $text-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+h1 {
+  letter-spacing: 1px;
+  color: $balance-color;
+}
+h2 {
+  margin: 20px 0px;
+}
+h3 {
+  border-bottom: 1px solid $border-dark-color;
+  padding-bottom: 10px;
+  margin: 40px 0 10px;
+}
+h4 {
+  text-transform: uppercase;
+}
+.container {
+  margin: 30px auto;
+  width: 350px;
+
+  .inc-exp-container {
+    background-color: $background-color;
+    box-shadow: $box-shadow;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    .money {
+      font-size: 20px;
+      letter-spacing: 1px;
+      margin: 5px 0;
+
+      &.plus {
+        color: $money-plus;
+      }
+      &.minus {
+        color: $money-minus;
+      }
+    }
+  }
+  .inc-exp-container > div {
+    flex: 1;
+    text-align: center;
+  }
+
+  .inc-exp-container > div:first-of-type {
+    border-right: 1px solid $border-color;
+  }
+
+  .transactions {
+    li {
+      background-color: $background-transactions;
+      box-shadow: var(--box-shadow);
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      padding: 10px;
+      margin: 10px 0;
+      &.plus {
+        border-right: 5px solid $money-plus;
+      }
+
+      &.minus {
+        border-right: 5px solid $money-minus;
+      }
+      .delete-btn {
+        cursor: pointer;
+        background-color: $background-btn-delete;
+        border: 0;
+        color: $text-btn;
+        font-size: 20px;
+        line-height: 20px;
+        padding: 2px 5px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-100%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      &:hover .delete-btn {
+        opacity: 1;
+      }
+    }
+  }
+  #form {
+    label {
+      display: inline-block;
+      margin: 10px 0;
+    }
+    input[type="text"],
+    input[type="number"] {
+      border: 1px solid $border-color;
+      border-radius: 2px;
+      display: block;
+      font-size: 16px;
+      padding: 10px;
+      width: 100%;
+    }
+    .btn {
+      cursor: pointer;
+      background-color: $background-btn;
+      box-shadow: $box-shadow;
+      color: $text-btn;
+      border: 0;
+      display: block;
+      font-size: 16px;
+      margin: 10px 0 30px;
+      padding: 10px;
+      width: 100%;
+
+      &:focus,
+      .delete-btn:focus {
+        outline: 0;
+      }
+    }
+  }
+}
